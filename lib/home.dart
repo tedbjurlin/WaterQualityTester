@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:water_quality_app/camera_instructions.dart';
 import 'package:water_quality_app/epa_standards.dart';
 import 'package:water_quality_app/instructions.dart';
+import 'package:water_quality_app/instructionspage.dart';
 import 'package:water_quality_app/map.dart';
 import 'package:water_quality_app/results.dart';
 
@@ -33,7 +34,8 @@ class _NavigateState extends State<Navigate> {
   static final List<Widget> _widgetOptions = <Widget>[
     CameraInstructionPage(),
     EPAStandards(),
-    InstructionPage(),
+    Instruction(),
+    InstructionsPage(),
     MapPage(fromNavHome: true),
     // ResultsPage(image: File('/Users/alexandriacade/WaterQualityTester/water_quality_app/assets/Varify Color Samples/Copper_Colors/Copper_0.1.jpg'))
     // Results page file input needs adjustment
@@ -58,31 +60,27 @@ class _NavigateState extends State<Navigate> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             // Camera Page
-            icon: Icon(key:Key('iconcamera'),
-            Icons.camera
-            ),
+            icon: Icon(key: Key('iconcamera'), Icons.camera),
             label: 'Camera',
           ),
           // EPA Standards Page
           BottomNavigationBarItem(
-            icon: Icon(key:Key('iconwater'),
-            Icons.water),
+            icon: Icon(key: Key('iconwater'), Icons.water),
             label: 'EPA Standards',
           ),
           BottomNavigationBarItem(
             // Home Page
-            icon: Icon(key:Key('iconinstructions'),
-            Icons.integration_instructions),
+            icon: Icon(
+                key: Key('iconinstructions'), Icons.integration_instructions),
             label: 'Instructions',
           ),
           BottomNavigationBarItem(
             // Map Page
-            icon: Icon(key:Key('iconmap'),
-            Icons.map),
+            icon: Icon(key: Key('iconmap'), Icons.map),
             label: 'Map',
           ),
-           //BottomNavigationBarItem(
-               //icon: Icon(Icons.question_mark), label: 'Results')
+          //BottomNavigationBarItem(
+          //icon: Icon(Icons.question_mark), label: 'Results')
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.cyan,

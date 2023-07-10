@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:water_quality_app/home.dart';
+import 'package:water_quality_app/instructions.dart';
+import 'package:water_quality_app/instructionspage.dart';
 import 'package:water_quality_app/map.dart';
 
 // dropdown list for types of water testers
@@ -14,9 +16,7 @@ class SelectTesterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-         primarySwatch: Colors.cyan
-      ),
+      theme: ThemeData(primarySwatch: Colors.cyan),
       home: TesterDropdown(),
     );
   }
@@ -45,25 +45,25 @@ class _TesterDropdownState extends State<TesterDropdown> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.black,
-          title: RichText(
-            text: const TextSpan(children: [
-              TextSpan(
-                  text: "WATER",
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 49, 227, 209),
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold)),
-              TextSpan(
-                  text: " QUALITY TESTER",
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 49, 227, 209),
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold)),
-            ]),
-          ),
+        centerTitle: true,
+        backgroundColor: Colors.black,
+        title: RichText(
+          text: const TextSpan(children: [
+            TextSpan(
+                text: "WATER",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 49, 227, 209),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold)),
+            TextSpan(
+                text: " QUALITY TESTER",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 49, 227, 209),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold)),
+          ]),
         ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Column(
@@ -103,7 +103,7 @@ class _TesterDropdownState extends State<TesterDropdown> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Home(),
+                    builder: (context) => InstructionsPage(),
                   ),
                 );
               },
@@ -122,8 +122,7 @@ class _TesterDropdownState extends State<TesterDropdown> {
                   ),
                 );
               },
-              child: const Text("View Map",
-                  textAlign: TextAlign.center),
+              child: const Text("View Map", textAlign: TextAlign.center),
             )
           ],
         ),

@@ -85,6 +85,7 @@ flutter:
     - assets/Varify Color Samples/TotalAlk_Colors/
     - assets/Varify Color Samples/TotChlorine_Colors/
     - assets/Varify Color Samples/Zinc_Colors/
+    - assets/waterbackground.jpg
   
 
   # The following line ensures that the Material Icons font is

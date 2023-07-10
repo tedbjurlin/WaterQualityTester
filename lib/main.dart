@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:water_quality_app/begin.dart';
+//import 'package:water_quality_app/begin.dart';
+import 'package:water_quality_app/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:water_quality_app/firebase.dart' as firebase;
@@ -16,7 +17,8 @@ Future<void> main() async {
     final userCredential = await FirebaseAuth.instance.signInAnonymously();
     print("Signed in with temp account");
     print(userCredential.user!.uid); //user id for anonymous account
-    firebase.userID = userCredential.user!.uid; //save the user's uid for use in the database
+    firebase.userID =
+        userCredential.user!.uid; //save the user's uid for use in the database
   } on CameraException catch (e) {
     print('Error in fetching the cameras: $e');
   } on FirebaseAuthException catch (e) {
@@ -29,7 +31,7 @@ Future<void> main() async {
         print(e.code);
     }
   }
-  runApp(
-    FrontPage(),
-  );
+  runApp(Home()
+      //FrontPage(),
+      );
 }

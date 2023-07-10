@@ -1,3 +1,5 @@
+// I don't think we need this 'Begin' page.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:water_quality_app/select_tester_type.dart';
@@ -28,26 +30,25 @@ class _FrontState extends State<Front> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.black,
-          title: RichText(
-            text: const TextSpan(children: [
-              TextSpan(
-                  text: "WATER",
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 49, 227, 209),
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold)),
-              TextSpan(
-                  text: " QUALITY TESTER",
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 49, 227, 209),
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold)),
-            ]),
-          ),
+        centerTitle: true,
+        backgroundColor: Colors.black,
+        title: RichText(
+          text: const TextSpan(children: [
+            TextSpan(
+                text: "WATER",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 49, 227, 209),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold)),
+            TextSpan(
+                text: " QUALITY TESTER",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 49, 227, 209),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold)),
+          ]),
         ),
-      
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,9 +63,8 @@ class _FrontState extends State<Front> {
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.normal,
                     fontFamily: 'Righteous',
-                    fontSize: 30
-                  ),
-                  ),
+                    fontSize: 30),
+              ),
             ),
             TextButton(
               onPressed: () {
