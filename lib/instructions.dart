@@ -53,7 +53,7 @@ class Instruction extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8.0),
                   color: Colors.blueGrey.withOpacity(0.5),
-                  child: Text("Welcome to the Water Quality Testing App",
+                  child: Text("Welcome",
                       style: TextStyle(
                           color: Colors.white, //.fromARGB(255, 49, 227, 209),
                           fontSize: 50,

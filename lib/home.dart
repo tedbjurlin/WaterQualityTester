@@ -29,14 +29,14 @@ class Navigate extends StatefulWidget {
 
 // all pages for navigation
 class _NavigateState extends State<Navigate> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 0;
   // options for page widgets
   static final List<Widget> _widgetOptions = <Widget>[
-    CameraInstructionPage(),
-    EPAStandards(),
     Instruction(),
-    InstructionsPage(),
-    MapPage(fromNavHome: true),
+    CameraInstructionPage(),
+    //EPAStandards(),
+    //InstructionsPage(),
+    //MapPage(fromNavHome: true),
     // ResultsPage(image: File('/Users/alexandriacade/WaterQualityTester/water_quality_app/assets/Varify Color Samples/Copper_Colors/Copper_0.1.jpg'))
     // Results page file input needs adjustment
   ];
@@ -59,26 +59,29 @@ class _NavigateState extends State<Navigate> {
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            // Camera Page
-            icon: Icon(key: Key('iconcamera'), Icons.camera),
-            label: 'Camera',
-          ),
-          // EPA Standards Page
-          BottomNavigationBarItem(
-            icon: Icon(key: Key('iconwater'), Icons.water),
-            label: 'EPA Standards',
-          ),
-          BottomNavigationBarItem(
             // Home Page
             icon: Icon(
                 key: Key('iconinstructions'), Icons.integration_instructions),
             label: 'Instructions',
           ),
           BottomNavigationBarItem(
+            // Camera Page
+            icon: Icon(key: Key('iconcamera'), Icons.camera),
+            label: 'Camera',
+          ),
+          /*
+          // EPA Standards Page
+          BottomNavigationBarItem(
+            icon: Icon(key: Key('iconwater'), Icons.water),
+            label: 'EPA Standards',
+          ),*/
+
+          /*
+          BottomNavigationBarItem(
             // Map Page
             icon: Icon(key: Key('iconmap'), Icons.map),
             label: 'Map',
-          ),
+          ), */
           //BottomNavigationBarItem(
           //icon: Icon(Icons.question_mark), label: 'Results')
         ],
