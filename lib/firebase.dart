@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:geolocator/geolocator.dart';
 
 //initialize an instance of cloud firestore
 final db = FirebaseFirestore.instance; //instance of the database

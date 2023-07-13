@@ -8,11 +8,11 @@ class EPAStandards extends StatelessWidget {
   final TextStyle textstyle1 = GoogleFonts.oswald(
     fontSize: 15,
    // fontWeight: FontWeight.bold,
-    textStyle: TextStyle(color: Colors.black, letterSpacing: .5),
+    textStyle: const TextStyle(color: Colors.black, letterSpacing: .5),
   );
   final TextStyle textstyle2 = GoogleFonts.lato(
     fontSize: 12,
-    textStyle: TextStyle(color: Colors.black, letterSpacing: .5),
+    textStyle: const TextStyle(color: Colors.black, letterSpacing: .5),
   );
 
   @override
@@ -42,7 +42,7 @@ class EPAStandards extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -71,7 +71,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -101,7 +101,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -133,7 +133,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -165,7 +165,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -198,7 +198,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -231,7 +231,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -264,7 +264,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -296,7 +296,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -328,7 +328,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -360,7 +360,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -392,7 +392,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -424,7 +424,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -456,7 +456,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -488,7 +488,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),
@@ -520,7 +520,7 @@ class EPAStandards extends StatelessWidget {
                       style: textstyle1,
                     )),
               ),
-              Container(
+              const SizedBox(
                 width: 300,
                 height: 20,
               ),

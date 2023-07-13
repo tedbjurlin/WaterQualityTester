@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
@@ -15,23 +14,23 @@ Future<void> main() async {
   try {
     cameras = await availableCameras();
     final userCredential = await FirebaseAuth.instance.signInAnonymously();
-    print("Signed in with temp account");
-    print(userCredential.user!.uid); //user id for anonymous account
+    debugPrint("Signed in with temp account");
+    debugPrint(userCredential.user!.uid); //user id for anonymous account
     firebase.userID =
         userCredential.user!.uid; //save the user's uid for use in the database
   } on CameraException catch (e) {
-    print('Error in fetching the cameras: $e');
+    debugPrint('Error in fetching the cameras: $e');
   } on FirebaseAuthException catch (e) {
     switch (e.code) {
       case "operation-not-allowed":
-        print("Anonymous auth hasn't been enabled for this project.");
+        debugPrint("Anonymous auth hasn't been enabled for this project.");
         break;
       default:
-        print("Unknown error.");
-        print(e.code);
+        debugPrint("Unknown error.");
+        debugPrint(e.code);
     }
   }
-  runApp(Home()
+  runApp(const Home()
       //FrontPage(),
       );
 }

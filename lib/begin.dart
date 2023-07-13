@@ -1,10 +1,7 @@
 // I don't think we need this 'Begin' page.
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:water_quality_app/select_tester_type.dart';
-import 'package:water_quality_app/firebase.dart' as firebase;
-import 'package:water_quality_app/results.dart' as results;
 
 class FrontPage extends StatelessWidget {
   const FrontPage({super.key});

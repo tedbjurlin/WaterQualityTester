@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:water_quality_app/home.dart';
-import 'package:water_quality_app/instructions.dart';
 import 'package:water_quality_app/instructionspage.dart';
 import 'package:water_quality_app/map.dart';
 
@@ -17,7 +15,7 @@ class SelectTesterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.cyan),
-      home: TesterDropdown(),
+      home: const TesterDropdown(),
     );
   }
 }
