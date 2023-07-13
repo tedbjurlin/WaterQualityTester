@@ -54,10 +54,11 @@ class Instruction extends StatelessWidget {
                   color: Colors.blueGrey.withOpacity(0.5),
                   child: const Text("Welcome",
                       style: TextStyle(
-                          color: Colors.white, //.fromARGB(255, 49, 227, 209),
-                          fontSize: 50,
-                          fontFamily: 'Righteous',
-                          fontWeight: FontWeight.bold)),
+                        color: Colors.white, //.fromARGB(255, 49, 227, 209),
+                        fontSize: 50,
+                        fontFamily: 'Ultra',
+                        //fontWeight: FontWeight.bold
+                      )),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
