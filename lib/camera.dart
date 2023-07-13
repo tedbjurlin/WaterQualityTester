@@ -46,7 +46,7 @@ class _CameraPageState extends State<CameraPage> {
     try {
       await cameraController.initialize();
     } on CameraException catch (e) {
-      print('Error initializing camera: $e');
+      debugPrint('Error initializing camera: $e');
     }
 
     // Update the Boolean
@@ -117,7 +117,7 @@ class _CameraPageState extends State<CameraPage> {
             }
           } catch (e) {
             // log the error to the console, if error occurs
-            print(e);
+            debugPrint(e.toString());
           }
         },
         child: const Icon(Icons.camera_alt),

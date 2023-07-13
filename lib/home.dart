@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:water_quality_app/camera_instructions.dart';
-import 'package:water_quality_app/epa_standards.dart';
 import 'package:water_quality_app/instructions.dart';
-import 'package:water_quality_app/instructionspage.dart';
-import 'package:water_quality_app/map.dart';
-import 'package:water_quality_app/results.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
