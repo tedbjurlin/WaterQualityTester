@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:water_quality_app/select_tester_type.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class InstructionsPage extends StatelessWidget {
   InstructionsPage({super.key});

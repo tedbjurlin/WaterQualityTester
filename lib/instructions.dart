@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:water_quality_app/select_tester_type.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Instruction extends StatelessWidget {
   Instruction({super.key});
@@ -29,21 +28,21 @@ class Instruction extends StatelessWidget {
           ),
         ),*/
         body: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/waterbackground.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
-            padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
-            constraints: BoxConstraints.expand(),
+            padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
+            constraints: const BoxConstraints.expand(),
             child: SafeArea(
                 child: Center(
                     child: Column(
               children: [
                 //Image.asset("assets/waterbackground.jpg"),
                 Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: Container(
                       padding: const EdgeInsets.all(0.0),
                       //color: Colors.blueGrey,
@@ -53,7 +52,7 @@ class Instruction extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8.0),
                   color: Colors.blueGrey.withOpacity(0.5),
-                  child: Text("Welcome",
+                  child: const Text("Welcome",
                       style: TextStyle(
                           color: Colors.white, //.fromARGB(255, 49, 227, 209),
                           fontSize: 50,
@@ -61,7 +60,7 @@ class Instruction extends StatelessWidget {
                           fontWeight: FontWeight.bold)),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                   child: Container(
                     padding: const EdgeInsets.all(0.0),
                     //color: Colors.green,
@@ -86,7 +85,7 @@ class Instruction extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                   child: Container(
                     padding: const EdgeInsets.all(0.0),
                     //color: Colors.blueGrey,

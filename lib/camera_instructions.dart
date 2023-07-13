@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:water_quality_app/camera.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CameraInstructionPage extends StatelessWidget {
    CameraInstructionPage({super.key});

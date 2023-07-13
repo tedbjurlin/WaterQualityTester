@@ -18,14 +18,14 @@ Set<Marker> markerList = {
 };
 
 class MapPage extends StatefulWidget {
-  MapPage({super.key, required this.fromNavHome});
+  const MapPage({super.key, required this.fromNavHome});
 
   // check if user comes from the
   // bottom nav or from homepage button
-  bool fromNavHome;
+  final bool fromNavHome;
 
   @override
-  _MapPageState createState() => _MapPageState();
+  State<MapPage> createState() => _MapPageState();
 }
 
 class _MapPageState extends State<MapPage> {

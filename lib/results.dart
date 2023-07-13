@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:water_quality_app/firebase.dart' as firebase;
-import 'package:water_quality_app/rgb_generator.dart';
 
 class ResultsPage extends StatefulWidget {
   final List<Color> testColors;
@@ -16,27 +15,27 @@ class ResultsPage extends StatefulWidget {
   const ResultsPage({super.key, required this.testColors});
 
   @override
-  _ResultsPageState createState() => _ResultsPageState();
+  State<ResultsPage> createState() => _ResultsPageState();
 }
 
 class _ResultsPageState extends State<ResultsPage> {
   // initial values for minerals
-  String _totalAlkValue = "";
-  String _sodiumChlorideValue = "";
-  String _flourideValue = "";
-  String _zincValue = "";
-  String _sulfateValue = "";
-  String _nitriteValue = "";
-  String _nitrateValue = "";
-  String _mercuryValue = "";
-  String _totalChlorineValue = "";
-  String _manganeseValue = "";
-  String _leadValue = "";
-  String _copperValue = "";
-  String _ironValue = "";
-  String _hydrogenSulfideValue = "";
-  String _hardnessValue = "";
-  String _pHValue = "";
+  // final String _totalAlkValue = "";
+  // final String _sodiumChlorideValue = "";
+  // final String _flourideValue = "";
+  // final String _zincValue = "";
+  // final String _sulfateValue = "";
+  // final String _nitriteValue = "";
+  // final String _nitrateValue = "";
+  // final String _mercuryValue = "";
+  // final String _totalChlorineValue = "";
+  // final String _manganeseValue = "";
+  // final String _leadValue = "";
+  // final String _copperValue = "";
+  // final String _ironValue = "";
+  // final String _hydrogenSulfideValue = "";
+  // final String _hardnessValue = "";
+  // final String _pHValue = "";
 
   // THIS DOES NOT RECOGNIZE THE DIRECTORY FOR SOME REASON
   // declare all values using rgb generator functions for each of the minerals tested
@@ -124,7 +123,7 @@ class _ResultsPageState extends State<ResultsPage> {
         .then((value) {})
         .onError((error, stackTrace) async {
       await Geolocator.requestPermission();
-      print("ERROR $error");
+      debugPrint("ERROR $error");
     });
     return await Geolocator.getCurrentPosition();
   }
@@ -780,7 +779,7 @@ class _ResultsPageState extends State<ResultsPage> {
                     onPressed: () async {
                       getUserCurrentLocation().then(
                         (value) async {
-                          print("${value.latitude} ${value.longitude}");
+                          debugPrint("${value.latitude} ${value.longitude}");
                           //add location to database
                           _firestore.addLocationToCollections(
                               GeoPoint(value.latitude, value.longitude));

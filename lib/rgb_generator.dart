@@ -39,7 +39,7 @@ int getLighestColorIndex(List<Color> colors) {
     }
   }
   // should add a check to rerun the test by reseting camera potentially
-  print("No light color found!");
+  debugPrint("No light color found!");
   return 0;
 }
 
@@ -65,6 +65,7 @@ double compareColors(Color c1, Color c2) {
   // find average color difference
   return (pctDiffRed + pctDiffGreen + pctDiffBlue) / 3 * 100;
 }
+
 // compare image file colors in assets directory to the test color from camera
 Future<String?> compareTestToSampleToGetValue(
     String assetColorsFilePath, Color testColor) async {
@@ -105,9 +106,9 @@ List<Color> getSingleColumnFromListIndex(List<Color> colors, int index) {
   // get every nth element in the list (represents the column)
   for (int i = index; i < colors.length; i += 16) {
     newList.add(colors[i]);
-    print(colors[i]);
+    debugPrint(colors[i].toString());
   }
-  print(newList);
+  debugPrint(newList.toString());
   return newList;
 }
 
