@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:water_quality_app/instructionspage.dart';
-import 'package:water_quality_app/map.dart';
+import 'package:water_quality_app/pages/instructionspage.dart';
 
 // dropdown list for types of water testers
 const List<String> list = <String>[
@@ -48,17 +47,18 @@ class _TesterDropdownState extends State<TesterDropdown> {
         title: RichText(
           text: const TextSpan(children: [
             TextSpan(
-                text: "WATER",
+                text: "select test",
                 style: TextStyle(
-                    color: Color.fromARGB(255, 49, 227, 209),
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold)),
-            TextSpan(
+                  color: Color.fromARGB(255, 49, 227, 209),
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                )),
+            /*TextSpan(
                 text: " QUALITY TESTER",
                 style: TextStyle(
                     color: Color.fromARGB(255, 49, 227, 209),
                     fontSize: 28,
-                    fontWeight: FontWeight.bold)),
+                    fontWeight: FontWeight.bold)),*/
           ]),
         ),
       ),
@@ -105,11 +105,10 @@ class _TesterDropdownState extends State<TesterDropdown> {
                   ),
                 );
               },
-              child: const Text(
-                'Test Water',
-                textAlign: TextAlign.center,
-              ),
+              child: const Text('select',
+                  textAlign: TextAlign.center, style: TextStyle(fontSize: 40)),
             ),
+            /*
             ElevatedButton(
               style: styleButton2,
               onPressed: () {
@@ -121,7 +120,7 @@ class _TesterDropdownState extends State<TesterDropdown> {
                 );
               },
               child: const Text("View Map", textAlign: TextAlign.center),
-            )
+            )*/
           ],
         ),
       ),

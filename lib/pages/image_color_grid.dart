@@ -1,11 +1,12 @@
+// This is the page before review results page
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:water_quality_app/results.dart';
-import 'package:water_quality_app/rgb_generator.dart';
+import 'package:water_quality_app/pages/results.dart';
+import 'package:water_quality_app/objects/rgb_generator.dart';
 
 // RGB class storing all RGB information from image file
 class RGBImageCheckPage extends StatefulWidget {
@@ -53,10 +54,18 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(
+              height: 30,
+            ),
+            // get color grid
+            _getColorGrid(),
+            const SizedBox(
+              height: 20,
+            ),
             // See results from image
             ElevatedButton(
               style: styleButton,
-              child: const Text("View Results"),
+              child: const Text("View Results", style: TextStyle(fontSize: 45)),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -66,12 +75,6 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
                 );
               },
             ),
-            const SizedBox(
-              height: 20,
-            ),
-
-            // get color grid
-            _getColorGrid(),
           ],
         ),
       ),

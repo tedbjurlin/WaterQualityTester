@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
-import 'package:water_quality_app/image_color_grid.dart';
+import 'package:water_quality_app/pages/image_color_grid.dart';
 import 'package:water_quality_app/main.dart';
 
 class CameraPage extends StatefulWidget {

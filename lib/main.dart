@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 //import 'package:water_quality_app/begin.dart';
-import 'package:water_quality_app/home.dart';
+import 'package:water_quality_app/widgets/homeNavBar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:water_quality_app/firebase.dart' as firebase;
@@ -30,7 +30,7 @@ Future<void> main() async {
         debugPrint(e.code);
     }
   }
-  runApp(const Home()
+  runApp(const HomeNavBar()
       //FrontPage(),
       );
 }
