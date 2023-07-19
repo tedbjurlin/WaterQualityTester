@@ -7,7 +7,7 @@ class Welcome extends StatelessWidget {
   Welcome({super.key});
   // style elevated button
   final ButtonStyle styleButton = ElevatedButton.styleFrom(
-      textStyle: const TextStyle(fontFamily: 'Righteous', fontSize: 20),
+      textStyle: const TextStyle(fontFamily: 'Comfortaa', fontSize: 20),
       backgroundColor: Colors.cyan);
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class Welcome extends StatelessWidget {
                   },
                   child: const Text(
                     'select a test',
-                    style: TextStyle(fontSize: 35),
+                    style: TextStyle(fontSize: 35, fontFamily: "Comfortaa"),
                   ),
                 ),
                 Padding(

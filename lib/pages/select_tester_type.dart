@@ -49,10 +49,10 @@ class _TesterDropdownState extends State<TesterDropdown> {
             TextSpan(
                 text: "select test",
                 style: TextStyle(
-                  color: Color.fromARGB(255, 49, 227, 209),
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                )),
+                    color: Color.fromARGB(255, 49, 227, 209),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Comfortaa")),
             /*TextSpan(
                 text: " QUALITY TESTER",
                 style: TextStyle(
@@ -106,7 +106,8 @@ class _TesterDropdownState extends State<TesterDropdown> {
                 );
               },
               child: const Text('select',
-                  textAlign: TextAlign.center, style: TextStyle(fontSize: 40)),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 40, fontFamily: "Comfortaa")),
             ),
             /*
             ElevatedButton(

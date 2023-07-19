@@ -42,7 +42,10 @@ class InstructionsPage extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Select Another Test'),
+                child: const Text(
+                  'Select Another Test',
+                  style: TextStyle(fontFamily: "Comfortaa"),
+                ),
               ),
             ),
             // image one
