@@ -122,7 +122,11 @@ flutter:
   - family: Comfortaa
     fonts:
       - asset: assets/fonts/Comfortaa-Regular.ttf
-
+      - asset: assets/fonts/Comfortaa-Bold.ttf
+        weight: 700
+  - family: Sans
+    fonts:
+      - asset: assets/fonts/SourceSansPro-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

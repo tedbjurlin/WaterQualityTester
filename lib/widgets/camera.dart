@@ -72,7 +72,21 @@ class _CameraPageState extends State<CameraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Color(0xffB6D6CC),
+        title: RichText(
+          text: const TextSpan(children: [
+            TextSpan(
+                text: "camera",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "Comfortaa")),
+          ]),
+        ),
+      ),
       body: Stack(
         alignment: FractionalOffset.center,
         children: <Widget>[
@@ -93,7 +107,8 @@ class _CameraPageState extends State<CameraPage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.large(
+        backgroundColor: Color(0xffB6D6CC),
         onPressed: () async {
           // take the picture in a try / catch block
           try {
@@ -122,6 +137,7 @@ class _CameraPageState extends State<CameraPage> {
         },
         child: const Icon(Icons.camera_alt),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
