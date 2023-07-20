@@ -1,7 +1,7 @@
 // Instruction page should start with "select test" and then take you to the instruction
 
 import 'package:flutter/material.dart';
-import 'package:water_quality_app/select_tester_type.dart';
+import 'package:water_quality_app/pages/select_tester_type.dart';
 
 class InstructionsPage extends StatelessWidget {
   InstructionsPage({super.key});
@@ -42,7 +42,10 @@ class InstructionsPage extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Select Another Test'),
+                child: const Text(
+                  'Select Another Test',
+                  style: TextStyle(fontFamily: "Comfortaa"),
+                ),
               ),
             ),
             // image one

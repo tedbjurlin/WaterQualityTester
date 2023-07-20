@@ -86,6 +86,10 @@ flutter:
     - assets/Varify Color Samples/TotChlorine_Colors/
     - assets/Varify Color Samples/Zinc_Colors/
     - assets/waterbackground.jpg #https://www.publicdomainpictures.net/en/view-image.php?image=34973&picture=water
+    - assets/icons/one.png       #https://commons.wikimedia.org/wiki/File:Icon_1_blue.svg
+    - assets/icons/two.png       #https://commons.wikimedia.org/wiki/File:Icon_2_blue.svg 
+    - assets/icons/three.png     #https://commons.wikimedia.org/wiki/File:Eo_circle_blue_number-3.svg
+    - assets/icons/four.png      #https://commons.wikimedia.org/wiki/File:Eo_circle_blue_number-4.svg
     
   
 
@@ -115,6 +119,9 @@ flutter:
   - family: Ultra
     fonts:
       - asset: assets/fonts/Ultra-Regular.ttf
+  - family: Comfortaa
+    fonts:
+      - asset: assets/fonts/Comfortaa-Regular.ttf
 
   # fonts:
   #   - family: Schyler

@@ -1,7 +1,7 @@
 // I don't think we need this 'Begin' page.
 
 import 'package:flutter/material.dart';
-import 'package:water_quality_app/select_tester_type.dart';
+import 'package:water_quality_app/pages/select_tester_type.dart';
 
 class FrontPage extends StatelessWidget {
   const FrontPage({super.key});
@@ -22,7 +22,7 @@ class Front extends StatefulWidget {
 }
 
 class _FrontState extends State<Front> {
-  final String _buttonText = "Test My Water";
+  final String _buttonText = "TEST!";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

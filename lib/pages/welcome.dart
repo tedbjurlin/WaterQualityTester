@@ -1,13 +1,13 @@
 // Instruction page should start with "select test" and then take you to the instruction
 
 import 'package:flutter/material.dart';
-import 'package:water_quality_app/select_tester_type.dart';
+import 'package:water_quality_app/pages/select_tester_type.dart';
 
-class Instruction extends StatelessWidget {
-  Instruction({super.key});
+class Welcome extends StatelessWidget {
+  Welcome({super.key});
   // style elevated button
   final ButtonStyle styleButton = ElevatedButton.styleFrom(
-      textStyle: const TextStyle(fontFamily: 'Righteous', fontSize: 20),
+      textStyle: const TextStyle(fontFamily: 'Comfortaa', fontSize: 20),
       backgroundColor: Colors.cyan);
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,8 @@ class Instruction extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
             constraints: const BoxConstraints.expand(),
             child: SafeArea(
                 child: Center(
@@ -52,7 +53,7 @@ class Instruction extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8.0),
                   color: Colors.blueGrey.withOpacity(0.5),
-                  child: const Text("Welcome",
+                  child: const Text("welcome",
                       style: TextStyle(
                         color: Colors.white, //.fromARGB(255, 49, 227, 209),
                         fontSize: 50,
@@ -81,8 +82,8 @@ class Instruction extends StatelessWidget {
                     );
                   },
                   child: const Text(
-                    'Select A Test',
-                    style: TextStyle(fontSize: 35),
+                    'select a test',
+                    style: TextStyle(fontSize: 35, fontFamily: "Comfortaa"),
                   ),
                 ),
                 Padding(
