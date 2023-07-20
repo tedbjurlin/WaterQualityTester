@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:water_quality_app/camera_instructions.dart';
 import 'package:water_quality_app/instructionspage.dart';
 import 'package:water_quality_app/map.dart';
 
@@ -101,7 +102,7 @@ class _TesterDropdownState extends State<TesterDropdown> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => InstructionsPage(),
+                    builder: (context) => CameraInstructionPage(),
                   ),
                 );
               },
