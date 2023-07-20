@@ -18,15 +18,18 @@ class RGBImageCheckPage extends StatefulWidget {
 class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
   List<Color> colors = [];
 
+  late File image;
+  late String path;
+
   @override
   void initState() {
     super.initState();
-    scanColors(widget.image);
+    image = widget.image;
+    path = widget.image.path;
   }
 
-  void scanColors(File image) async {
-    ColorDetectionResult results =
-        await ColorStripDetector.detectColors(image.path);
+  Future<void> scanColors(String path) async {
+    ColorDetectionResult results = await ColorStripDetector.detectColors(path);
 
     if (results.exitCode == 0) {
       for (ColorOutput result in results.colors) {
@@ -46,7 +49,7 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // See results from image
+            Image.file(image),
             ElevatedButton(
               child: const Text("View Results"),
               onPressed: () {
@@ -60,6 +63,17 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
             ),
             const SizedBox(
               height: 20,
+            ),
+            ElevatedButton(
+              child: const Text("Scan image"),
+              onPressed: () async {
+                await scanColors(path);
+                setState(
+                  () {
+                    image = File(path);
+                  },
+                );
+              },
             ),
           ],
         ),
