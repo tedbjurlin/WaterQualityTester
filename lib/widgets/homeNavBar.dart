@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:water_quality_app/pages/camera_instructions.dart';
-import 'package:water_quality_app/pages/welcome.dart';
+import 'package:water_quality_app/widgets/camera.dart';
 
 class HomeNavBar extends StatelessWidget {
   const HomeNavBar({super.key});
@@ -30,14 +30,8 @@ class _NavigateState extends State<Navigate> {
   int _selectedIndex = 0;
   // options for page widgets
   static final List<Widget> _widgetOptions = <Widget>[
-    Welcome(),
     CameraInstructionPage(),
-    // To make the app as simple as possible I don't think that we need these pages below
-    //EPAStandards(),
-    //InstructionsPage(),
-    //MapPage(fromNavHome: true),
-    // ResultsPage(image: File('/Users/alexandriacade/WaterQualityTester/water_quality_app/assets/Varify Color Samples/Copper_Colors/Copper_0.1.jpg'))
-    // Results page file input needs adjustment
+    CameraPage()
   ];
 
   // update the index selected
