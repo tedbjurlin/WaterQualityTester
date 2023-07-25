@@ -44,6 +44,9 @@ class CameraInstructionPage extends StatelessWidget {
             Container(
                 color: Color(0xffF9D5B4),
                 child: Column(children: [
+                  SizedBox(
+                    height: 20,
+                  ),
                   Center(
                       child: Text("water test strip instructions",
                           style: TextStyle(
@@ -88,6 +91,9 @@ class CameraInstructionPage extends StatelessWidget {
                       ),
                       title: Text("After 60 seconds dispose of test strip",
                           style: textstyle)),
+                  SizedBox(
+                    height: 20,
+                  ),
                 ])),
             SizedBox(
               height: 20,
@@ -96,6 +102,9 @@ class CameraInstructionPage extends StatelessWidget {
                 color: Color(0xffDDCFD9),
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 20,
+                    ),
                     Center(
                         child: Text("camera instructions",
                             style: TextStyle(
@@ -149,6 +158,9 @@ class CameraInstructionPage extends StatelessWidget {
                           "Make sure to use a DARK background (preferably black)",
                           style: textstyle),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 )),
             const SizedBox(height: 20),
@@ -187,7 +199,10 @@ class CameraInstructionPage extends StatelessWidget {
                         color: Colors.black,
                         fontSize: 25,
                         fontFamily: "Comfortaa"),
-                  )
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                 ])),
           ],
         ));

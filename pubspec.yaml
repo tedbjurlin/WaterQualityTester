@@ -59,6 +59,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.9.0"
+
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -90,6 +94,7 @@ flutter:
     - assets/icons/two.png       #https://commons.wikimedia.org/wiki/File:Icon_2_blue.svg 
     - assets/icons/three.png     #https://commons.wikimedia.org/wiki/File:Eo_circle_blue_number-3.svg
     - assets/icons/four.png      #https://commons.wikimedia.org/wiki/File:Eo_circle_blue_number-4.svg
+    - assets/icons/logo1.jpg
     
   
 
