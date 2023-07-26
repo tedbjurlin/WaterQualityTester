@@ -1,7 +1,7 @@
 // I don't think we need this 'Begin' page.
 
 import 'package:flutter/material.dart';
-import 'package:water_quality_app/pages/select_tester_type.dart';
+import 'package:water_quality_app/notNeeded/select_tester_type.dart';
 
 class FrontPage extends StatelessWidget {
   const FrontPage({super.key});
