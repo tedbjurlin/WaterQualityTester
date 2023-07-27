@@ -11,8 +11,10 @@ import 'package:water_quality_app/firebase.dart' as firebase;
 
 class ResultsPage extends StatefulWidget {
   final List<Color> testColors;
+  final List<double> results;
 
-  const ResultsPage({super.key, required this.testColors});
+  const ResultsPage(
+      {super.key, required this.testColors, required this.results});
 
   @override
   State<ResultsPage> createState() => _ResultsPageState();
@@ -49,53 +51,52 @@ class _ResultsPageState extends State<ResultsPage> {
 
   // current names for each mineral
   List<String> namesList = [
-    "Total Alkalinity",
-    "Sodium Chloride",
-    "Fluoride",
-    "Zinc",
-    "Sulfate",
-    "Nitrite",
-    "Nitrate",
-    "Mercury",
-    "Total Chlorine",
-    "Manganese",
-    "Lead",
-    "Copper",
-    "Iron",
-    "Hydrogen Sulfide",
+    "pH",
     "Hardness",
-    "pH"
+    "Hydrogen Sulfide",
+    "Iron",
+    "Copper",
+    "Lead",
+    "Manganese",
+    "Total Chlorine",
+    "Mercury",
+    "Nitrate",
+    "Nitrite",
+    "Sulfate",
+    "Zinc",
+    "Flouride",
+    "Sodium Chloride",
+    "Total Alkalinity"
   ];
 
-  // default values for minerals until values tested can be displayed
-  List<double> valueList = [
-    80,
-    100,
-    3,
-    10,
-    200,
-    1,
-    25,
-    .001,
-    6.5,
-    7.0,
-    1.2,
-    3.1,
-    3.4,
-    1.1,
-    2.8,
-    9.0
+  List<List<double>> acceptableLimits = [
+    [6.5, 8.5],
+    [0, 425],
+    [0, 0],
+    [0, 0.3],
+    [0, 1.0],
+    [0, 15.0],
+    [0, 0.1],
+    [0, 3.0],
+    [0, 0.002],
+    [0, 10.0],
+    [0, 1.0],
+    [0, 200.0],
+    [0, 5.0],
+    [0, 4.0],
+    [0, 250.0],
+    [40.0, 180.0]
   ];
 
   final firebase.Firestore _firestore = firebase.Firestore();
 
   // displays a different color flag based on if
   // the mineral is reaching dangerous levels
-  flagCheck(double upperbound, double lowerbound, int index) {
-    if (upperbound < valueList[index]) {
+  flagCheck(double upperbound, double lowerbound, double value) {
+    if (upperbound < value) {
       return const Color.fromARGB(255, 248, 18, 2);
     }
-    if (valueList[index] < lowerbound) {
+    if (value < lowerbound) {
       return const Color.fromARGB(255, 162, 30, 20);
     } else {
       return Colors.green;
@@ -148,582 +149,55 @@ class _ResultsPageState extends State<ResultsPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[0],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[0],
-              ),
-              Container(
-                width: 60,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  valueList[0].toString(),
-                  style: textstyle2,
-                ),
-              ),
-              Icon(Icons.flag, color: flagCheck(180, 40, 0))
-            ],
+          Expanded(
+            child: ListView.builder(
+                itemCount: 16,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: 190,
+                          height: 20,
+                          decoration: BoxDecoration(
+                            color: Colors.cyan,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
+                            namesList[index],
+                            style: textstyle2,
+                          ),
+                        ),
+                        Icon(
+                          Icons.square,
+                          color: widget.testColors[index],
+                        ),
+                        Container(
+                          width: 60,
+                          height: 20,
+                          decoration: BoxDecoration(
+                            color: Colors.cyan,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
+                            widget.results[index].toString(),
+                            style: textstyle2,
+                          ),
+                        ),
+                        Icon(Icons.flag,
+                            color: flagCheck(
+                                acceptableLimits[index][1],
+                                acceptableLimits[index][0],
+                                widget.results[index]))
+                      ],
+                    ),
+                  );
+                }),
           ),
           columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[1],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[1],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[1].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(250, 0, 1))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[2],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[2],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[2].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(4.0, 0, 2))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[3],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[3],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[3].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(5, 0, 3))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[4],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[4],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[4].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(200, 0, 4))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[5],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[5],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[5].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(1, 0, 5))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[6],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[6],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[6].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(10, 0, 6))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[7],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[7],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[7].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(.002, 0, 7))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[8],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[8],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[8].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(3, 0, 8))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[9],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[9],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[9].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(0.1, 0, 9))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[10],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[10],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[10].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(15, 0, 10))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[11],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[11],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[11].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(1, 0, 11))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[12],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[12],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[12].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(0.3, 0, 12))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[13],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[13],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[13].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(0, 0, 13))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[14],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[14],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[14].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(100, 10, 14))
-            ],
-          ),
-          columnFiller,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                width: 190,
-                height: 20,
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  namesList[15],
-                  style: textstyle2,
-                ),
-              ),
-              Icon(
-                Icons.square,
-                color: widget.testColors[15],
-              ),
-              Container(
-                  width: 60,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    valueList[15].toString(),
-                    style: textstyle2,
-                  )),
-              Icon(Icons.flag, color: flagCheck(8.5, 6.5, 15)),
-            ],
-          ),
           const SizedBox(height: 20),
           Center(
             // buttons for adding data to database,
@@ -746,20 +220,20 @@ class _ResultsPageState extends State<ResultsPage> {
                     ),
                     onPressed: () {
                       _firestore.addToCollections(
-                          valueList[0],
-                          valueList[1],
-                          valueList[2],
-                          valueList[3],
-                          valueList[4],
-                          valueList[5],
-                          valueList[6],
-                          valueList[7],
-                          valueList[8],
-                          valueList[9],
-                          valueList[10],
-                          valueList[11],
-                          valueList[12],
-                          valueList[13]);
+                          widget.results[0],
+                          widget.results[1],
+                          widget.results[2],
+                          widget.results[3],
+                          widget.results[4],
+                          widget.results[5],
+                          widget.results[6],
+                          widget.results[7],
+                          widget.results[8],
+                          widget.results[9],
+                          widget.results[10],
+                          widget.results[11],
+                          widget.results[12],
+                          widget.results[13]);
                     },
                   ),
                 ),
