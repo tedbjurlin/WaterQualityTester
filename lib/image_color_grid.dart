@@ -17,6 +17,7 @@ class RGBImageCheckPage extends StatefulWidget {
 
 class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
   List<Color> colors = [];
+  List<double> resultValues = [];
 
   late File image;
   late String path;
@@ -33,11 +34,13 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
 
     if (results.exitCode == 0) {
       for (ColorOutput result in results.colors) {
-        colors.add(Color.fromARGB(255, result.red, result.blue, result.green));
+        colors.add(Color.fromARGB(255, result.red, result.green, result.blue));
+        resultValues.add(result.value);
       }
     } else {
       for (ColorOutput _ in results.colors) {
         colors.add(Colors.red);
+        resultValues.add(-1);
       }
     }
   }
@@ -56,7 +59,8 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ResultsPage(testColors: colors),
+                    builder: (context) =>
+                        ResultsPage(testColors: colors, results: resultValues),
                   ),
                 );
               },
