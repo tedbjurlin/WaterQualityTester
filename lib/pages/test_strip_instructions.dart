@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:water_quality_app/pages/test_strip_instructions.dart';
+import 'package:water_quality_app/pages/camera_instructions.dart';
 import 'package:water_quality_app/widgets/camera.dart';
+import 'package:water_quality_app/pages/source_description.dart';
 
-class CameraInstructionPage extends StatelessWidget {
-  CameraInstructionPage({super.key});
+class WaterInstructionPage extends StatelessWidget {
+  WaterInstructionPage({super.key});
 
   // style elevated button
   final ButtonStyle styleButton = ElevatedButton.styleFrom(
@@ -22,7 +23,7 @@ class CameraInstructionPage extends StatelessWidget {
         appBar: AppBar(
             centerTitle: true,
             backgroundColor: Color(0xffB6D6CC),
-            title: Text("camera instructions",
+            title: Text("Testing Strip Instructions",
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 28,
@@ -37,70 +38,59 @@ class CameraInstructionPage extends StatelessWidget {
               height: 20,
             ),
             Container(
-                color: Color(0xffDDCFD9),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Center(
-                        child: Text("camera instructions",
-                            style: TextStyle(
-                                fontFamily: "Comfortaa",
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700))),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    ListTile(
-                      // this tile needs to stand out
-                      title: Text("Note: TAKE PICTURES USING A DARK BACKGROUND",
-                          style: textstyle),
-                    ),
-                    SizedBox(height: 20),
-                    ListTile(
+                color: Color(0xffF9D5B4),
+                child: Column(children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                      child: Text("water test strip instructions",
+                          style: TextStyle(
+                              fontFamily: "Comfortaa",
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700))),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ListTile(
                       leading: Image(
                         image: AssetImage("assets/icons/one.png"),
                       ),
-                      title: Text("Use the camera in a VERTICAL ORIENTATION",
-                          style: textstyle),
-                    ),
-                    SizedBox(height: 20),
-                    ListTile(
+                      title: Text("Remove one test strip from package",
+                          style: textstyle)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ListTile(
                       leading: Image(
                         image: AssetImage("assets/icons/two.png"),
                       ),
                       title: Text(
-                          "Lineup the water test strip within the border of the overlay",
-                          style: textstyle),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    ListTile(
+                          "Submerge test strip in water source or into a cup of water from the water source",
+                          style: textstyle)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ListTile(
                       leading: Image(
                         image: AssetImage("assets/icons/three.png"),
                       ),
                       title: Text(
-                          "IMPORTANT!!! Put the white part of the test strip at the very top of the image preview",
-                          style: textstyle),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    ListTile(
+                          "Within 60 seconds take a picture of test strip",
+                          style: textstyle)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ListTile(
                       leading: Image(
                         image: AssetImage("assets/icons/four.png"),
                       ),
-                      title: Text(
-                          "Make sure to use a DARK background (preferably black)",
-                          style: textstyle),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                  ],
-                )),
+                      title: Text("After 60 seconds dispose of test strip",
+                          style: textstyle)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ])),
             const SizedBox(height: 20),
             SizedBox(
                 child: Column(
@@ -113,16 +103,16 @@ class CameraInstructionPage extends StatelessWidget {
                       shape: CircleBorder(),
                     ),
                     child: IconButton(
-                      key: const Key('cameraButton'),
+                      key: const Key('nextButton'),
                       padding: EdgeInsets.all(10),
                       color: Colors.black,
-                      icon: Icon(Icons.camera_alt),
+                      icon: Icon(Icons.arrow_forward_outlined),
                       iconSize: 100,
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CameraPage(),
+                            builder: (context) => CameraInstructionPage(),
                           ),
                         );
                       },
@@ -132,7 +122,7 @@ class CameraInstructionPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "open camera",
+                    "next",
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
