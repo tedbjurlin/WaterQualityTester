@@ -64,84 +64,108 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
         body: Center(
             child: Column(children: [
           SizedBox(
-            height: 20,
+            height: 30,
           ),
           Expanded(
-              child: SingleChildScrollView(
-                  child: Container(
-                      color: Color(0xffDDCFD9),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 20,
-                          ),
-
+              child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: SingleChildScrollView(
+                      child:
                           // DropDown Box
-                          Text(
-                            "Select what type of water source this is",
-                            style: TextStyle(
-                                fontSize: 20, fontFamily: "Comfortaa"),
-                          ), // disclaimer should go here about how we are only testing drinking water standards
-                          SizedBox(height: 20),
+
                           Form(
                               key: _dropdownFormKey,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  DropdownButtonFormField(
-                                      decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.white, width: 2),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.white, width: 2),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        filled: true,
-                                        fillColor: Color(0xffF9D5B4),
-                                      ),
-                                      validator: (value) => value == null
-                                          ? "Select a water source"
-                                          : null,
-                                      dropdownColor: Color(0xffF9D5B4),
-                                      value: selectedValue,
-                                      onChanged: (String? newValue) {
-                                        setState(() {
-                                          selectedValue = newValue!;
-                                        });
-                                      },
-                                      items: dropdownItems),
+                                  Container(
+                                    color: Color(0xffDDCFD9),
+                                    child: Padding(
+                                        padding: EdgeInsets.all(8),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            Text(
+                                              "Select what type of water source this is",
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontFamily: "Comfortaa"),
+                                            ), // disclaimer should go here about how we are only testing drinking water standards
+                                            SizedBox(height: 20),
+                                            DropdownButtonFormField(
+                                                decoration: InputDecoration(
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.white,
+                                                        width: 2),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                  ),
+                                                  border: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.white,
+                                                        width: 2),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                  ),
+                                                  filled: true,
+                                                  fillColor: Color(0xffF9D5B4),
+                                                ),
+                                                validator: (value) => value ==
+                                                        null
+                                                    ? "Select a water source"
+                                                    : null,
+                                                dropdownColor: Colors.white,
+                                                value: selectedValue,
+                                                onChanged: (String? newValue) {
+                                                  setState(() {
+                                                    selectedValue = newValue!;
+                                                  });
+                                                },
+                                                items: dropdownItems),
 
-                                  SizedBox(
-                                    height: 20,
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+
+                                            // Description of water
+                                            Text(
+                                              "Describe where you got the water sample from (ie from a sink in your basement vs kitchen...)",
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontFamily: "Comfortaa"),
+                                            ),
+                                            TextFormField(
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  return 'Please enter some text';
+                                                }
+                                                return null;
+                                              },
+                                              decoration: const InputDecoration(
+                                                hintText: 'Source Type',
+                                                labelText:
+                                                    'Describe water source type',
+                                              ),
+                                            ),
+
+                                            const SizedBox(height: 20),
+                                          ],
+                                        )),
                                   ),
-
-                                  // Description of water
-                                  Text(
-                                    "Describe where you got the water sample from (ie from a sink in your basement vs kitchen...)",
-                                    style: TextStyle(
-                                        fontSize: 20, fontFamily: "Comfortaa"),
-                                  ),
-                                  TextFormField(
-                                    decoration: const InputDecoration(
-                                      hintText: 'Source Type',
-                                      labelText: 'Enter water source type',
-                                    ),
-                                  ),
-
-                                  const SizedBox(height: 20),
-
                                   // NEXT BUTTON
                                   SizedBox(
                                       child: Column(
                                           //height: 100.0,
                                           //width: 18.0,
                                           children: [
+                                        SizedBox(height: 20),
                                         Ink(
                                           decoration: const ShapeDecoration(
                                             color: Color(0xffB6D6CC),
@@ -234,9 +258,9 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                         ),
                                       ]))
                                 ],
-                              ))
-                        ],
-                      ))))
+                              )))
+                  //)
+                  ))
         ])));
   }
 }

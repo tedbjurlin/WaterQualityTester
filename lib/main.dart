@@ -30,8 +30,5 @@ Future<void> main() async {
         debugPrint(e.code);
     }
   }
-  runApp(//SourceDescriptionPage()
-      Home()
-      //FrontPage(),
-      );
+  runApp(Home());
 }
