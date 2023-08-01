@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:water_quality_app/pages/results.dart';
 import 'package:water_test_scanner/water_test_scanning.dart';
@@ -29,21 +30,25 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
     path = widget.image.path;
   }
 
-  Future<void> scanColors(String path) async {
-    ColorDetectionResult results = await ColorStripDetector.detectColors(path);
+  // Future<void> scanColors(String path) async {
+  //   final ByteData bytes = await rootBundle.load('assets/colorkeyasset.png');
+  //   final Uint8List list = bytes.buffer.asUint8List();
 
-    if (results.exitCode == 0) {
-      for (ColorOutput result in results.colors) {
-        colors.add(Color.fromARGB(255, result.red, result.green, result.blue));
-        resultValues.add(result.value);
-      }
-    } else {
-      for (ColorOutput _ in results.colors) {
-        colors.add(Colors.red);
-        resultValues.add(-1);
-      }
-    }
-  }
+  //   ColorDetectionResult results =
+  //       await ColorStripDetector.detectColors(path, list, 160, 710);
+
+  //   if (results.exitCode == 0) {
+  //     for (ColorOutput result in results.colors) {
+  //       colors.add(Color.fromARGB(255, result.red, result.green, result.blue));
+  //       resultValues.add(result.value);
+  //     }
+  //   } else {
+  //     for (ColorOutput _ in results.colors) {
+  //       colors.add(Colors.red);
+  //       resultValues.add(-1);
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -68,17 +73,17 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-              child: const Text("Scan image"),
-              onPressed: () async {
-                await scanColors(path);
-                setState(
-                  () {
-                    image = File(path);
-                  },
-                );
-              },
-            ),
+            // ElevatedButton(
+            //   child: const Text("Scan image"),
+            //   onPressed: () async {
+            //     await scanColors(path);
+            //     setState(
+            //       () {
+            //         image = File(path);
+            //       },
+            //     );
+            //   },
+            // ),
           ],
         ),
       ),
