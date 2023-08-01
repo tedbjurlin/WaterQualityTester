@@ -59,16 +59,32 @@ class CameraInstructionPage extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     ListTile(
-                      leading: Image(
-                        image: AssetImage("assets/icons/one.png"),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Text(
+                          "1",
+                          style: TextStyle(
+                              fontFamily: "Comfortaa",
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text("Use the camera in a VERTICAL ORIENTATION",
                           style: textstyle),
                     ),
                     SizedBox(height: 20),
                     ListTile(
-                      leading: Image(
-                        image: AssetImage("assets/icons/two.png"),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Text(
+                          "2",
+                          style: TextStyle(
+                              fontFamily: "Comfortaa",
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text(
                           "Lineup the water test strip within the border of the overlay",
@@ -78,8 +94,16 @@ class CameraInstructionPage extends StatelessWidget {
                       height: 20,
                     ),
                     ListTile(
-                      leading: Image(
-                        image: AssetImage("assets/icons/three.png"),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Text(
+                          "3",
+                          style: TextStyle(
+                              fontFamily: "Comfortaa",
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text(
                           "IMPORTANT!!! Put the white part of the test strip at the very top of the image preview",
@@ -89,8 +113,16 @@ class CameraInstructionPage extends StatelessWidget {
                       height: 20,
                     ),
                     ListTile(
-                      leading: Image(
-                        image: AssetImage("assets/icons/four.png"),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Text(
+                          "4",
+                          style: TextStyle(
+                              fontFamily: "Comfortaa",
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text(
                           "Make sure to use a DARK background (preferably black)",

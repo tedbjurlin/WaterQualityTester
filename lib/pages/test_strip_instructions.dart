@@ -53,8 +53,16 @@ class WaterInstructionPage extends StatelessWidget {
                     height: 20,
                   ),
                   ListTile(
-                      leading: Image(
-                        image: AssetImage("assets/icons/one.png"),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Text(
+                          "1",
+                          style: TextStyle(
+                              fontFamily: "Comfortaa",
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text("Remove one test strip from package",
                           style: textstyle)),
@@ -62,8 +70,16 @@ class WaterInstructionPage extends StatelessWidget {
                     height: 20,
                   ),
                   ListTile(
-                      leading: Image(
-                        image: AssetImage("assets/icons/two.png"),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Text(
+                          "2",
+                          style: TextStyle(
+                              fontFamily: "Comfortaa",
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text(
                           "Submerge test strip in water source or into a cup of water from the water source",
@@ -72,8 +88,16 @@ class WaterInstructionPage extends StatelessWidget {
                     height: 20,
                   ),
                   ListTile(
-                      leading: Image(
-                        image: AssetImage("assets/icons/three.png"),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Text(
+                          "3",
+                          style: TextStyle(
+                              fontFamily: "Comfortaa",
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text(
                           "Within 60 seconds take a picture of test strip",
@@ -82,8 +106,16 @@ class WaterInstructionPage extends StatelessWidget {
                     height: 20,
                   ),
                   ListTile(
-                      leading: Image(
-                        image: AssetImage("assets/icons/four.png"),
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Text(
+                          "4",
+                          style: TextStyle(
+                              fontFamily: "Comfortaa",
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text("After 60 seconds dispose of test strip",
                           style: textstyle)),
