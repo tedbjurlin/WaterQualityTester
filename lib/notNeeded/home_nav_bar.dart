@@ -32,10 +32,10 @@ class _NavigateState extends State<Navigate> {
   int _selectedIndex = 0;
   // options for page widgets
   static final List<Widget> _widgetOptions = <Widget>[
-    SourceDescriptionPage(),
+    const SourceDescriptionPage(),
     WaterInstructionPage(),
     CameraInstructionPage(),
-    CameraPage(),
+    const CameraPage(),
   ];
 
   // update the index selected
@@ -53,7 +53,7 @@ class _NavigateState extends State<Navigate> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xff074F57),
+        backgroundColor: const Color(0xff074F57),
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

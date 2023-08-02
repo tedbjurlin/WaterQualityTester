@@ -4,20 +4,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 final db = FirebaseFirestore.instance; //instance of the database
 String userID = "";
 //var docRefLoc = "";
-var pHDoc;
-var zincDoc;
-var totChlDoc;
-var totAlkDoc;
-var sulfateDoc;
-var NaClDoc;
-var nitriteDoc;
-var nitrateDoc;
-var mangDoc;
-var leadDoc;
-var hydSulDoc;
-var freeChlDoc;
-var flouDoc;
-var copperDoc;
+String pHDoc = "";
+String zincDoc = "";
+String totChlDoc = "";
+String totAlkDoc = "";
+String sulfateDoc = "";
+String sodiumChlorideDoc = "";
+String nitriteDoc = "";
+String nitrateDoc = "";
+String mangDoc = "";
+String leadDoc = "";
+String hydSulDoc = "";
+String freeChlDoc = "";
+String flouDoc = "";
+String copperDoc = "";
 
 //init database collections
 final pHCollection = db.collection('pH');
@@ -63,7 +63,7 @@ class Firestore {
       sulfateDoc = docRef.id;
     }
     if (collection == "SodiumChloride") {
-      NaClDoc = docRef.id;
+      sodiumChlorideDoc = docRef.id;
     }
     if (collection == "Nitrite") {
       nitriteDoc = docRef.id;
@@ -106,7 +106,7 @@ class Firestore {
       double totcl,
       double totalk,
       double sulfate,
-      double NaCl,
+      double sodiumChloride,
       double nitrite,
       double nitrate,
       double manganese,
@@ -120,7 +120,7 @@ class Firestore {
     addMeasurement("TotalChlorine", totcl);
     addMeasurement("TotalAlkalinity", totalk);
     addMeasurement("Sulfate", sulfate);
-    addMeasurement("SodiumChloride", NaCl);
+    addMeasurement("SodiumChloride", sodiumChloride);
     addMeasurement("Nitrite", nitrite);
     addMeasurement("Nitrate", nitrate);
     addMeasurement("Manganese", manganese);
@@ -137,7 +137,7 @@ class Firestore {
     addLocation("TotalChlorine", location, totChlDoc);
     addLocation("TotalAlkalinity", location, totAlkDoc);
     addLocation("Sulfate", location, sulfateDoc);
-    addLocation("SodiumChloride", location, NaClDoc);
+    addLocation("SodiumChloride", location, sodiumChlorideDoc);
     addLocation("Nitrite", location, nitriteDoc);
     addLocation("Nitrate", location, nitrateDoc);
     addLocation("Manganese", location, mangDoc);
