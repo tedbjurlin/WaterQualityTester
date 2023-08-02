@@ -9,7 +9,10 @@ class RGBImageCheckPage extends StatefulWidget {
   // image from camera
   final File image;
 
-  const RGBImageCheckPage({super.key, required this.image});
+  const RGBImageCheckPage(
+      {super.key, required this.image, required this.result});
+
+  final ColorDetectionResult result;
 
   @override
   State<RGBImageCheckPage> createState() => _RGBImageCheckPageState();
@@ -19,26 +22,16 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
   List<Color> colors = [];
   List<double> resultValues = [];
 
-  late File image;
-  late String path;
-
   @override
   void initState() {
     super.initState();
-    image = widget.image;
-    path = widget.image.path;
-  }
-
-  Future<void> scanColors(String path) async {
-    ColorDetectionResult results = await ColorStripDetector.detectColors(path);
-
-    if (results.exitCode == 0) {
-      for (ColorOutput result in results.colors) {
+    if (widget.result.exitCode == 0) {
+      for (ColorOutput result in widget.result.colors) {
         colors.add(Color.fromARGB(255, result.red, result.green, result.blue));
         resultValues.add(result.value);
       }
     } else {
-      for (ColorOutput _ in results.colors) {
+      for (ColorOutput _ in widget.result.colors) {
         colors.add(Colors.red);
         resultValues.add(-1);
       }
@@ -52,7 +45,7 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.file(image),
+            widget.result.image,
             ElevatedButton(
               child: const Text("View Results"),
               onPressed: () {
@@ -62,20 +55,6 @@ class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
                     builder: (context) =>
                         ResultsPage(testColors: colors, results: resultValues),
                   ),
-                );
-              },
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              child: const Text("Scan image"),
-              onPressed: () async {
-                await scanColors(path);
-                setState(
-                  () {
-                    image = File(path);
-                  },
                 );
               },
             ),

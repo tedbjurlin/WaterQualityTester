@@ -1,15 +1,17 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter/services.dart';
 
 import 'package:water_quality_app/pages/image_color_grid.dart';
 import 'package:water_quality_app/main.dart';
+import 'package:water_test_scanner/water_test_scanning.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({Key? key}) : super(key: key);
 
   @override
-  _CameraPageState createState() => _CameraPageState();
+  State<CameraPage> createState() => _CameraPageState();
 }
 
 class _CameraPageState extends State<CameraPage> {
@@ -69,12 +71,22 @@ class _CameraPageState extends State<CameraPage> {
     super.dispose();
   }
 
+  Future<ColorDetectionResult> scanColors(String path) async {
+    final ByteData keyBytes =
+        await rootBundle.load('assets/colorkey2asset.png');
+    Uint8List keyList = keyBytes.buffer.asUint8List();
+    ColorDetectionResult results =
+        await ColorStripDetector.detectColors(path, keyList, 160, 710);
+    print(results.colors);
+    return results;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color(0xffB6D6CC),
+        backgroundColor: const Color(0xffB6D6CC),
         title: RichText(
           text: const TextSpan(children: [
             TextSpan(
@@ -108,7 +120,7 @@ class _CameraPageState extends State<CameraPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton.large(
-        backgroundColor: Color(0xffB6D6CC),
+        backgroundColor: const Color(0xffB6D6CC),
         onPressed: () async {
           // take the picture in a try / catch block
           try {
@@ -121,12 +133,13 @@ class _CameraPageState extends State<CameraPage> {
 
               if (!mounted) return;
 
+              ColorDetectionResult result = await scanColors(imageFile.path);
+
               // If the picture was taken, display with results
               await Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => RGBImageCheckPage(
-                    image: imageFile,
-                  ),
+                  builder: (context) =>
+                      RGBImageCheckPage(image: imageFile, result: result),
                 ),
               );
             }
