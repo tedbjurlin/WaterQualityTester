@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:water_quality_app/notNeeded/begin.dart';
-import 'package:water_quality_app/widgets/homeNavBar.dart';
+import 'package:water_quality_app/pages/source_description.dart';
 import 'package:water_quality_app/notNeeded/map.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -801,7 +801,7 @@ class _ResultsPageState extends State<ResultsPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomeNavBar(),
+                            builder: (context) => const Home(),
                           )).then((value) => setState(() {}));
                       //adds the location to files in database
                     },

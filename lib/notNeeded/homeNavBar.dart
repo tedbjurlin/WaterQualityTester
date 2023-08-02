@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:water_quality_app/pages/camera_instructions.dart';
+import 'package:water_quality_app/pages/source_description.dart';
+import 'package:water_quality_app/pages/test_strip_instructions.dart';
 import 'package:water_quality_app/widgets/camera.dart';
 
 class HomeNavBar extends StatelessWidget {
@@ -30,8 +32,10 @@ class _NavigateState extends State<Navigate> {
   int _selectedIndex = 0;
   // options for page widgets
   static final List<Widget> _widgetOptions = <Widget>[
+    SourceDescriptionPage(),
+    WaterInstructionPage(),
     CameraInstructionPage(),
-    CameraPage()
+    CameraPage(),
   ];
 
   // update the index selected
@@ -53,16 +57,26 @@ class _NavigateState extends State<Navigate> {
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
+            icon: Icon(key: Key('descicon'), Icons.integration_instructions),
+            label: 'description',
+          ),
+          BottomNavigationBarItem(
             // Home Page
-            icon: Icon(
-                key: Key('iconinstructions'), Icons.integration_instructions),
-            label: 'Instructions',
+            icon:
+                Icon(key: Key('teststripicon'), Icons.integration_instructions),
+            label: 'water strip',
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(key: Key('cameraicon'), Icons.integration_instructions),
+            label: 'camera instr',
           ),
           BottomNavigationBarItem(
             // Camera Page
             icon: Icon(key: Key('iconcamera'), Icons.camera),
-            label: 'Camera',
+            label: 'camera',
           ),
+
           /*
           // EPA Standards Page
           BottomNavigationBarItem(
