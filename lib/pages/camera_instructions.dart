@@ -151,12 +151,12 @@ class CameraInstructionPage extends StatelessWidget {
                       icon: Icon(Icons.camera_alt),
                       iconSize: 100,
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CameraPage(),
-                          ),
-                        );
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CameraPage(),
+                            ),
+                            (route) => false);
                       },
                     ),
                   ),

@@ -126,6 +126,7 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                                   setState(() {
                                                     selectedValue = newValue!;
                                                   });
+                                                  print(selectedValue);
                                                 },
                                                 items: dropdownItems),
 
@@ -198,14 +199,17 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                                                   "Sans")),
                                                       actions: <Widget>[
                                                         TextButton(
+                                                          //Navigator.pushAndRemoveUntil() (route) => false
                                                           onPressed: () {
-                                                            Navigator.push(
+                                                            Navigator
+                                                                .pushAndRemoveUntil(
                                                               context,
                                                               MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
                                                                         WaterInstructionPage(),
                                                               ),
+                                                              (route) => false,
                                                             );
                                                             // then go to the next page
                                                           },

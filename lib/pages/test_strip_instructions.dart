@@ -141,11 +141,12 @@ class WaterInstructionPage extends StatelessWidget {
                       icon: Icon(Icons.arrow_forward_outlined),
                       iconSize: 100,
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                             builder: (context) => CameraInstructionPage(),
                           ),
+                          (route) => false,
                         );
                       },
                     ),
