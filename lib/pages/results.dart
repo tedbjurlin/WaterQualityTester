@@ -12,6 +12,13 @@ class ResultsPage extends StatelessWidget {
   const ResultsPage({super.key, required this.results});
   final ColorDetectionResult results;
 
+  static const resultsPageTextStyle = TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Comfortaa',
+  );
+
   Widget resultsPageButton(
           {required String text, required Function() onPressed}) =>
       Container(
@@ -25,12 +32,7 @@ class ResultsPage extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             text,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-              fontFamily: 'Comfortaa',
-            ),
+            style: resultsPageTextStyle,
           ),
         ),
       );
@@ -74,6 +76,21 @@ class ResultsPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 16, bottom: 10),
+            child: Column(
+              children: [
+                Text(
+                  'Click on each tile in the list to learn more',
+                  style: resultsPageTextStyle,
+                ),
+                Text(
+                  'about the parameters being measured.',
+                  style: resultsPageTextStyle,
+                ),
+              ],
+            ),
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: 16,

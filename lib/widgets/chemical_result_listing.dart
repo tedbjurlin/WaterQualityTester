@@ -13,6 +13,8 @@ class ChemicalResultListing extends StatelessWidget {
   final ChemicalStandard standard;
   final ColorOutput result;
 
+  bool get isStandardMet => standard.isValueInRange(result.value);
+
   @override
   Widget build(BuildContext context) {
     final resultColor =
@@ -25,7 +27,9 @@ class ChemicalResultListing extends StatelessWidget {
 
     return Card(
       child: ListTile(
-        tileColor: const Color.fromARGB(255, 249, 213, 180),
+        tileColor: isStandardMet
+            ? const Color.fromARGB(255, 182, 214, 204)
+            : const Color.fromARGB(255, 255, 200, 200),
         leading: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -44,9 +48,7 @@ class ChemicalResultListing extends StatelessWidget {
             Text(
               '$displayValue ${standard.units ?? ''}',
               style: TextStyle(
-                color: standard.isValueInRange(result.value)
-                    ? Colors.black
-                    : const Color.fromARGB(255, 255, 75, 75),
+                color: isStandardMet ? Colors.black : Colors.red,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
