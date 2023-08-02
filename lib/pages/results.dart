@@ -5,8 +5,8 @@ import 'package:water_test_scanner/water_test_scanning.dart';
 
 import 'package:water_quality_app/objects/chemical_standard.dart'
     show epaStandards;
+import 'package:water_quality_app/pages/source_description.dart';
 import 'package:water_quality_app/widgets/chemical_result_listing.dart';
-import 'package:water_quality_app/widgets/homeNavBar.dart';
 
 class ResultsPage extends StatelessWidget {
   const ResultsPage({super.key, required this.results});
@@ -59,7 +59,8 @@ class ResultsPage extends StatelessWidget {
           icon: const Icon(Icons.home_outlined),
           onPressed: () => Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => const Navigate()),
+            MaterialPageRoute(
+                builder: (context) => const SourceDescriptionPage()),
             (route) => false,
           ),
         ),

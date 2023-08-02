@@ -30,5 +30,5 @@ Future<void> main() async {
         debugPrint(e.code);
     }
   }
-  runApp(Home());
+  runApp(const Home());
 }

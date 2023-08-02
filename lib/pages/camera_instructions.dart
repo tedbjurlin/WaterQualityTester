@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:water_quality_app/pages/test_strip_instructions.dart';
 import 'package:water_quality_app/widgets/camera.dart';
 
 class CameraInstructionPage extends StatelessWidget {
@@ -8,7 +7,7 @@ class CameraInstructionPage extends StatelessWidget {
   // style elevated button
   final ButtonStyle styleButton = ElevatedButton.styleFrom(
       //textStyle: const TextStyle(fontSize: 20, color: Colors.white),
-      backgroundColor: Color.fromRGBO(
+      backgroundColor: const Color.fromRGBO(
           123, 231, 96, 1)); // I want to make this button stand out
 
   // style cards for listview
@@ -21,8 +20,8 @@ class CameraInstructionPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             centerTitle: true,
-            backgroundColor: Color(0xffB6D6CC),
-            title: Text("camera instructions",
+            backgroundColor: const Color(0xffB6D6CC),
+            title: const Text("camera instructions",
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 28,
@@ -33,23 +32,23 @@ class CameraInstructionPage extends StatelessWidget {
           shrinkWrap: true,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
-                color: Color(0xffDDCFD9),
+                color: const Color(0xffDDCFD9),
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Center(
+                    const Center(
                         child: Text("camera instructions",
                             style: TextStyle(
                                 fontFamily: "Comfortaa",
                                 fontSize: 20,
                                 fontWeight: FontWeight.w700))),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     ListTile(
@@ -57,10 +56,11 @@ class CameraInstructionPage extends StatelessWidget {
                       title: Text("Note: TAKE PICTURES USING A DARK BACKGROUND",
                           style: textstyle),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ListTile(
-                      leading: CircleAvatar(
+                      leading: const CircleAvatar(
                         radius: 30,
+                        backgroundColor: Color(0xff1889e6),
                         child: Text(
                           "1",
                           style: TextStyle(
@@ -68,15 +68,15 @@ class CameraInstructionPage extends StatelessWidget {
                               fontSize: 30,
                               fontWeight: FontWeight.bold),
                         ),
-                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text("Use the camera in a VERTICAL ORIENTATION",
                           style: textstyle),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ListTile(
-                      leading: CircleAvatar(
+                      leading: const CircleAvatar(
                         radius: 30,
+                        backgroundColor: Color(0xff1889e6),
                         child: Text(
                           "2",
                           style: TextStyle(
@@ -84,18 +84,18 @@ class CameraInstructionPage extends StatelessWidget {
                               fontSize: 30,
                               fontWeight: FontWeight.bold),
                         ),
-                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text(
                           "Lineup the water test strip within the border of the overlay",
                           style: textstyle),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     ListTile(
-                      leading: CircleAvatar(
+                      leading: const CircleAvatar(
                         radius: 30,
+                        backgroundColor: Color(0xff1889e6),
                         child: Text(
                           "3",
                           style: TextStyle(
@@ -103,18 +103,18 @@ class CameraInstructionPage extends StatelessWidget {
                               fontSize: 30,
                               fontWeight: FontWeight.bold),
                         ),
-                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text(
                           "IMPORTANT!!! Put the white part of the test strip at the very top of the image preview",
                           style: textstyle),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     ListTile(
-                      leading: CircleAvatar(
+                      leading: const CircleAvatar(
                         radius: 30,
+                        backgroundColor: Color(0xff1889e6),
                         child: Text(
                           "4",
                           style: TextStyle(
@@ -122,13 +122,12 @@ class CameraInstructionPage extends StatelessWidget {
                               fontSize: 30,
                               fontWeight: FontWeight.bold),
                         ),
-                        backgroundColor: Color(0xff1889e6),
                       ),
                       title: Text(
                           "Make sure to use a DARK background (preferably black)",
                           style: textstyle),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                   ],
@@ -146,31 +145,31 @@ class CameraInstructionPage extends StatelessWidget {
                     ),
                     child: IconButton(
                       key: const Key('cameraButton'),
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       color: Colors.black,
-                      icon: Icon(Icons.camera_alt),
+                      icon: const Icon(Icons.camera_alt),
                       iconSize: 100,
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CameraPage(),
+                              builder: (context) => const CameraPage(),
                             ),
                             (route) => false);
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "open camera",
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
                         fontFamily: "Comfortaa"),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ])),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:water_quality_app/pages/camera_instructions.dart';
 import 'package:water_quality_app/pages/test_strip_instructions.dart';
 
 class Home extends StatelessWidget {
@@ -10,7 +9,7 @@ class Home extends StatelessWidget {
     // home navigator for all pages
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.cyan),
-      home: SourceDescriptionPage(),
+      home: const SourceDescriptionPage(),
     );
   }
 }
@@ -18,18 +17,17 @@ class Home extends StatelessWidget {
 class SourceDescriptionPage extends StatefulWidget {
   const SourceDescriptionPage({Key? key}) : super(key: key);
   @override
-  _SourceDescriptionPageState createState() => _SourceDescriptionPageState();
+  State<SourceDescriptionPage> createState() => _SourceDescriptionPageState();
 }
 
 class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
   // style elevated button
   final ButtonStyle styleButton = ElevatedButton.styleFrom(
       //textStyle: const TextStyle(fontSize: 20, color: Colors.white),
-      backgroundColor: Color.fromRGBO(
+      backgroundColor: const Color.fromRGBO(
           123, 231, 96, 1)); // I want to make this button stand out
 
-  var _formKey;
-  String? selectedValue = null;
+  String? selectedValue;
   final _dropdownFormKey = GlobalKey<FormState>();
 
   // style cards for listview
@@ -39,10 +37,10 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
 
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(child: Text("Drinking Water"), value: "DW"),
-      DropdownMenuItem(child: Text("Pond Water"), value: "Pond"),
-      DropdownMenuItem(child: Text("Surface Water"), value: "SW"),
-      DropdownMenuItem(child: Text("Other"), value: "Other"),
+      const DropdownMenuItem(value: "DW", child: Text("Drinking Water")),
+      const DropdownMenuItem(value: "Pond", child: Text("Pond Water")),
+      const DropdownMenuItem(value: "SW", child: Text("Surface Water")),
+      const DropdownMenuItem(value: "Other", child: Text("Other")),
     ];
     return menuItems;
   }
@@ -52,8 +50,8 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
     return Scaffold(
         appBar: AppBar(
             centerTitle: true,
-            backgroundColor: Color(0xffB6D6CC),
-            title: Text("Water Source Description",
+            backgroundColor: const Color(0xffB6D6CC),
+            title: const Text("Water Source Description",
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 28,
@@ -63,7 +61,7 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
         // to scroll through page
         body: Center(
             child: Column(children: [
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Expanded(
@@ -79,42 +77,45 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                    color: Color(0xffDDCFD9),
+                                    color: const Color(0xffDDCFD9),
                                     child: Padding(
-                                        padding: EdgeInsets.all(8),
+                                        padding: const EdgeInsets.all(8),
                                         child: Column(
                                           children: [
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 20,
                                             ),
-                                            Text(
+                                            const Text(
                                               "Select what type of water source this is",
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   fontFamily: "Comfortaa"),
                                             ), // disclaimer should go here about how we are only testing drinking water standards
-                                            SizedBox(height: 20),
+                                            const SizedBox(height: 20),
                                             DropdownButtonFormField(
                                                 decoration: InputDecoration(
                                                   enabledBorder:
                                                       OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.white,
-                                                        width: 2),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.white,
+                                                            width: 2),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             20),
                                                   ),
                                                   border: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.white,
-                                                        width: 2),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.white,
+                                                            width: 2),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             20),
                                                   ),
                                                   filled: true,
-                                                  fillColor: Color(0xffF9D5B4),
+                                                  fillColor:
+                                                      const Color(0xffF9D5B4),
                                                 ),
                                                 validator: (value) => value ==
                                                         null
@@ -126,16 +127,16 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                                   setState(() {
                                                     selectedValue = newValue!;
                                                   });
-                                                  print(selectedValue);
+                                                  debugPrint(selectedValue);
                                                 },
                                                 items: dropdownItems),
 
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 20,
                                             ),
 
                                             // Description of water
-                                            Text(
+                                            const Text(
                                               "Describe where you got the water sample from (ie from a sink in your basement vs kitchen...)",
                                               style: TextStyle(
                                                   fontSize: 20,
@@ -166,7 +167,7 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                           //height: 100.0,
                                           //width: 18.0,
                                           children: [
-                                        SizedBox(height: 20),
+                                        const SizedBox(height: 20),
                                         Ink(
                                           decoration: const ShapeDecoration(
                                             color: Color(0xffB6D6CC),
@@ -174,9 +175,10 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                           ),
                                           child: IconButton(
                                             key: const Key('nextButton'),
-                                            padding: EdgeInsets.all(10),
+                                            padding: const EdgeInsets.all(10),
                                             color: Colors.black,
-                                            icon: Icon(Icons.arrow_forward),
+                                            icon:
+                                                const Icon(Icons.arrow_forward),
                                             iconSize: 100,
                                             onPressed: () {
                                               if (_dropdownFormKey.currentState!
@@ -214,7 +216,7 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                                             // then go to the next page
                                                           },
                                                           child: Container(
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffB6D6CC),
                                                             padding:
                                                                 const EdgeInsets
@@ -247,17 +249,17 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                             },
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
-                                        Text(
+                                        const Text(
                                           "next",
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 25,
                                               fontFamily: "Comfortaa"),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
                                       ]))
