@@ -1,12 +1,8 @@
-// This is the page before review results page
-import 'dart:async';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:water_quality_app/pages/results.dart';
-import 'package:water_quality_app/objects/rgb_generator.dart';
+import 'package:water_test_scanner/water_test_scanning.dart';
 
 // RGB class storing all RGB information from image file
 class RGBImageCheckPage extends StatefulWidget {
@@ -16,137 +12,75 @@ class RGBImageCheckPage extends StatefulWidget {
   const RGBImageCheckPage({super.key, required this.image});
 
   @override
-  _RGBImageCheckPageState createState() => _RGBImageCheckPageState();
+  State<RGBImageCheckPage> createState() => _RGBImageCheckPageState();
 }
 
-// number of colors from image
-int noOfPaletteColors = 16;
-
 class _RGBImageCheckPageState extends State<RGBImageCheckPage> {
-  // lists for colors, sorted colors, and palette of colors
-  List<Color> allColors = [];
-  List<Color> sortedColors = [];
-  List<Color> testColors = [];
-  List<Color> palette = [];
+  List<Color> colors = [];
+  List<double> resultValues = [];
 
-  Color primary = Colors.blueGrey;
-  Color primaryText = Colors.black;
-  Color background = Colors.white;
-
-  // image bytes
-  Uint8List? imageBytes;
-
-  // style the elevated buttons
-  final ButtonStyle styleButton = ElevatedButton.styleFrom(
-      textStyle: const TextStyle(fontSize: 20), backgroundColor: Colors.teal);
+  late File image;
+  late String path;
 
   @override
   void initState() {
     super.initState();
-    extractColors();
+    image = widget.image;
+    path = widget.image.path;
+  }
+
+  Future<void> scanColors(String path) async {
+    ColorDetectionResult results = await ColorStripDetector.detectColors(path);
+
+    if (results.exitCode == 0) {
+      for (ColorOutput result in results.colors) {
+        colors.add(Color.fromARGB(255, result.red, result.green, result.blue));
+        resultValues.add(result.value);
+      }
+    } else {
+      for (ColorOutput _ in results.colors) {
+        colors.add(Colors.red);
+        resultValues.add(-1);
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      backgroundColor: background,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
-              height: 30,
-            ),
-            // get color grid
-            _getColorGrid(),
-            const SizedBox(
-              height: 20,
-            ),
-            // See results from image
+            Image.file(image),
             ElevatedButton(
-              style: styleButton,
-              child: const Text("View Results", style: TextStyle(fontSize: 45)),
+              child: const Text("View Results"),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ResultsPage(testColors: testColors),
+                    builder: (context) =>
+                        ResultsPage(testColors: colors, results: resultValues),
                   ),
+                );
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              child: const Text("Scan image"),
+              onPressed: () async {
+                await scanColors(path);
+                setState(
+                  () {
+                    image = File(path);
+                  },
                 );
               },
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  // get all colors from image
-  Future<void> extractColors() async {
-    // initial colors, sorted colors, palette, and image bytes
-    allColors = [];
-    sortedColors = [];
-    palette = [];
-    imageBytes = null;
-
-    setState(() {});
-
-    // number of palette colors
-    noOfPaletteColors = 16;
-
-    // get image bytes and extract colors, sort, and generate the palette
-    imageBytes = await widget.image.readAsBytes();
-    allColors = await compute(extractPixelsColors, imageBytes);
-
-    // get just the water test kit colors for each row
-    testColors = getSingleColumnFromListIndex(
-        allColors, getLighestColorIndex(allColors));
-
-    setState(() {});
-    sortedColors = await compute(sortColors, allColors);
-    setState(() {});
-    palette = await compute(generatePalette,
-        {keyPalette: allColors, keyNoOfItems: noOfPaletteColors});
-    primary = palette.last;
-    primaryText = palette.first;
-    setState(() {});
-  }
-
-// displays grid of all pixels from image
-  Widget _getColorGrid() {
-    return SizedBox(
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: allColors.isEmpty
-                ? Container(
-                    alignment: Alignment.center,
-                    height: 200,
-                    child: const CircularProgressIndicator(),
-                  )
-                : Column(
-                    children: [
-                      const SizedBox(height: 10),
-                      GridView.builder(
-                        shrinkWrap: true,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: noOfPixelsPerAxis),
-                        itemCount: allColors.length,
-                        itemBuilder: (BuildContext ctx, index) {
-                          return Container(
-                            alignment: Alignment.center,
-                            width: 25,
-                            child: Container(
-                              color: allColors[index],
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-          ),
-        ],
       ),
     );
   }
