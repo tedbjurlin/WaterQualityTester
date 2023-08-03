@@ -73,10 +73,10 @@ class _CameraPageState extends State<CameraPage> {
 
   Future<ColorDetectionResult> scanColors(String path) async {
     final ByteData keyBytes =
-        await rootBundle.load('assets/colorkey2asset.png');
+        await rootBundle.load('assets/colorkey3asset.jpg');
     Uint8List keyList = keyBytes.buffer.asUint8List();
     ColorDetectionResult results =
-        await ColorStripDetector.detectColors(path, keyList, 160, 710);
+        await ColorStripDetector.detectColors(path, keyList);
     print(results.colors);
     return results;
   }
