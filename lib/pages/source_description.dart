@@ -1,19 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:water_quality_app/pages/test_strip_instructions.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // home navigator for all pages
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.cyan),
-      home: const SourceDescriptionPage(),
-    );
-  }
-}
-
 class SourceDescriptionPage extends StatefulWidget {
   const SourceDescriptionPage({Key? key}) : super(key: key);
   @override
@@ -209,7 +196,7 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                                               MaterialPageRoute(
                                                                 builder:
                                                                     (context) =>
-                                                                        WaterInstructionPage(),
+                                                                        WaterInstructionPage(waterType: selectedValue!, waterInfo: "",),
                                                               ),
                                                               (route) => false,
                                                             );
@@ -241,7 +228,7 @@ class _SourceDescriptionPageState extends State<SourceDescriptionPage> {
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          WaterInstructionPage(),
+                                                          WaterInstructionPage(waterType: selectedValue!, waterInfo: "",),
                                                     ),
                                                   );
                                                 }

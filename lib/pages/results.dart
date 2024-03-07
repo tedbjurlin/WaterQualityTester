@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
 import 'package:water_test_scanner/water_test_scanning.dart';
 
 import 'package:water_quality_app/objects/chemical_standard.dart'
@@ -8,8 +9,13 @@ import 'package:water_quality_app/objects/chemical_standard.dart'
 import 'package:water_quality_app/pages/source_description.dart';
 import 'package:water_quality_app/widgets/chemical_result_listing.dart';
 
+import '../objects/app_state.dart';
+
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({super.key, required this.results});
+  const ResultsPage({super.key, required this.results, required this.waterType, required this.waterInfo});
+
+  final String waterType;
+  final String waterInfo;
   final ColorDetectionResult results;
 
   static const resultsPageTextStyle = TextStyle(
@@ -107,15 +113,15 @@ class ResultsPage extends StatelessWidget {
             child: Row(
               children: [
                 const Spacer(),
-                resultsPageButton(
-                  text: 'add to database',
-                  onPressed: () => debugPrint('Not yet implemented'),
-                ),
-                const Spacer(),
-                resultsPageButton(
-                  text: 'plot your location',
-                  onPressed: () => debugPrint('Not yet implemented'),
-                ),
+                Consumer<AppState>(builder: (context, appState, child) {
+                  return resultsPageButton(
+                    text: 'add to database',
+                    onPressed: () async {
+                      Position loc = await appState.getCurrentPosition();
+                      appState.addStrip(results, loc, waterType, DateTime.now());
+                    },
+                  );
+                }),
                 const Spacer(),
               ],
             ),

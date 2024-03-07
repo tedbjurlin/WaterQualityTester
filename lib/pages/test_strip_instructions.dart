@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:water_quality_app/pages/camera_instructions.dart';
 
 class WaterInstructionPage extends StatelessWidget {
-  WaterInstructionPage({super.key});
+  WaterInstructionPage({super.key, required this.waterType, required this.waterInfo});
+
+  final String waterType;
+  final String waterInfo;
 
   // style elevated button
   final ButtonStyle styleButton = ElevatedButton.styleFrom(
@@ -142,7 +145,7 @@ class WaterInstructionPage extends StatelessWidget {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CameraInstructionPage(),
+                            builder: (context) => CameraInstructionPage(waterType: waterType, waterInfo: waterInfo,),
                           ),
                           (route) => false,
                         );

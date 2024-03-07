@@ -23,7 +23,7 @@ class AppState extends ChangeNotifier {
   AppState(this.firestore, this.auth, this.storage);
 
   Future<void> addStrip(ColorDetectionResult result, Position loc,
-      String waterType, DateTime timestamp, FirebaseFirestore firestore) async {
+      String waterType, DateTime timestamp) async {
     var record = firestore.collection("testInstances");
     final imageLink = await uploadImage(result.imFile);
     record.doc().set(result.toFirebaseRecord(
@@ -43,5 +43,9 @@ class AppState extends ChangeNotifier {
       // ...
     }
     return await imageRef.getDownloadURL();
+  }
+
+  Future<Position> getCurrentPosition() async {
+    return Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true);
   }
 }

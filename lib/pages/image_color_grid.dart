@@ -10,7 +10,10 @@ class RGBImageCheckPage extends StatelessWidget {
   final File image;
 
   const RGBImageCheckPage(
-      {super.key, required this.image, required this.result});
+      {super.key, required this.image, required this.result, required this.waterType, required this.waterInfo});
+
+  final String waterType;
+  final String waterInfo;
 
   final ColorDetectionResult result;
 
@@ -26,7 +29,7 @@ class RGBImageCheckPage extends StatelessWidget {
               child: const Text("View Results"),
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ResultsPage(results: result)));
+                    MaterialPageRoute(builder: (context) => ResultsPage(results: result, waterType: waterType, waterInfo: waterInfo,)));
               },
             ),
           ],

@@ -8,7 +8,10 @@ import 'package:water_quality_app/main.dart';
 import 'package:water_test_scanner/water_test_scanning.dart';
 
 class CameraPage extends StatefulWidget {
-  const CameraPage({Key? key}) : super(key: key);
+  const CameraPage({Key? key, required this.waterType, required this.waterInfo}) : super(key: key);
+
+  final String waterType;
+  final String waterInfo;
 
   @override
   State<CameraPage> createState() => _CameraPageState();
@@ -139,7 +142,7 @@ class _CameraPageState extends State<CameraPage> {
               await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) =>
-                      RGBImageCheckPage(image: imageFile, result: result),
+                      RGBImageCheckPage(image: imageFile, result: result, waterType: widget.waterType, waterInfo: widget.waterInfo),
                 ),
               );
             }
