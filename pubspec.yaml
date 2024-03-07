@@ -51,6 +51,9 @@ dependencies:
   
   water_test_scanner:
     path: ../water_test_scanner/
+  uuid: ^4.2.2
+  geoflutterfire2: ^2.3.15
+  firebase_storage: ^11.6.0
 
 dev_dependencies:
   flutter_test:
