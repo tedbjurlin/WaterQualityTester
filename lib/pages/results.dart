@@ -51,7 +51,7 @@ class ResultsPage extends StatelessWidget {
       await Geolocator.requestPermission();
       debugPrint("ERROR $error");
     });
-    return await Geolocator.getCurrentPosition();
+    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true);
   }
 
   @override
@@ -117,7 +117,7 @@ class ResultsPage extends StatelessWidget {
                   return resultsPageButton(
                     text: 'add to database',
                     onPressed: () async {
-                      Position loc = await appState.getCurrentPosition();
+                      Position loc = await getUserCurrentLocation();
                       appState.addStrip(results, loc, waterType, DateTime.now());
                     },
                   );

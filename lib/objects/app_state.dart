@@ -44,8 +44,4 @@ class AppState extends ChangeNotifier {
     }
     return await imageRef.getDownloadURL();
   }
-
-  Future<Position> getCurrentPosition() async {
-    return Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true);
-  }
 }
