@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:uuid/uuid.dart';
-import 'package:water_test_scanner/water_test_scanning.dart';
 
 /// The state of the app, containing globally used variables and functions.
 class AppState extends ChangeNotifier {
@@ -22,15 +21,42 @@ class AppState extends ChangeNotifier {
 
   AppState(this.firestore, this.auth, this.storage);
 
-  Future<void> addStrip(ColorDetectionResult result, Position loc,
+  Future<void> addStrip(File image, List<double> colors, Position loc,
       String waterType, DateTime timestamp) async {
     var record = firestore.collection("testInstances");
-    final imageLink = await uploadImage(result.imFile);
-    record.doc().set(result.toFirebaseRecord(
+    final imageLink = await uploadImage(image);
+    record.doc().set(toFirebaseRecord(
       imageLink,
+      colors,
       geo.point(latitude: loc.latitude, longitude: loc.longitude).data,
       waterType,
       timestamp));
+  }
+
+  Map<String, dynamic> toFirebaseRecord(
+    String imageLink, List<double> colors, dynamic loc, String waterType, DateTime timestamp){
+    return {
+      "image": imageLink,
+      "timestamp": timestamp.microsecondsSinceEpoch,
+      "location": loc,
+      "Water Type": waterType,
+      "pH": colors[0],
+      "Hardness": colors[1],
+      "Hydrogen Sulfide": colors[2],
+      "Iron": colors[3],
+      "Copper": colors[4],
+      "Lead": colors[5],
+      "Manganese": colors[6],
+      "Total Chlorine": colors[7],
+      "Mercury": colors[8],
+      "Nitrate": colors[9],
+      "Nitrite": colors[10],
+      "Sulfate": colors[11],
+      "Zinc": colors[12],
+      "Flouride": colors[13],
+      "Sodium Chloride": colors[14],
+      "Total Alkalinity": colors[15]
+    };
   }
 
   Future<String> uploadImage(File imFile) async {

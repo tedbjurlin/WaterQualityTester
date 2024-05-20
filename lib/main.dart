@@ -30,5 +30,8 @@ Future<void> main() async {
         debugPrint(e.code);
     }
   }
-  runApp(const SourceDescriptionPage());
+  runApp(MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.cyan),
+      home: const SourceDescriptionPage(),
+    ));
 }

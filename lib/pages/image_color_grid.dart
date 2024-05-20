@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:water_quality_app/pages/results.dart';
-import 'package:water_test_scanner/water_test_scanning.dart';
 
 // RGB class storing all RGB information from image file
 class RGBImageCheckPage extends StatelessWidget {
@@ -10,12 +9,10 @@ class RGBImageCheckPage extends StatelessWidget {
   final File image;
 
   const RGBImageCheckPage(
-      {super.key, required this.image, required this.result, required this.waterType, required this.waterInfo});
+      {super.key, required this.image, required this.waterType, required this.waterInfo});
 
   final String waterType;
   final String waterInfo;
-
-  final ColorDetectionResult result;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +21,12 @@ class RGBImageCheckPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            result.image,
+            Image(image: FileImage(image)),
             ElevatedButton(
               child: const Text("View Results"),
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ResultsPage(results: result, waterType: waterType, waterInfo: waterInfo,)));
+                    MaterialPageRoute(builder: (context) => ResultsPage(image: image, waterType: waterType, waterInfo: waterInfo,)));
               },
             ),
           ],

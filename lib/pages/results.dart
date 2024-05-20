@@ -1,8 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
-import 'package:water_test_scanner/water_test_scanning.dart';
 
 import 'package:water_quality_app/objects/chemical_standard.dart'
     show epaStandards;
@@ -11,12 +12,21 @@ import 'package:water_quality_app/widgets/chemical_result_listing.dart';
 
 import '../objects/app_state.dart';
 
-class ResultsPage extends StatelessWidget {
-  const ResultsPage({super.key, required this.results, required this.waterType, required this.waterInfo});
+class ResultsPage extends StatefulWidget {
+  const ResultsPage({super.key, required this.image, required this.waterType, required this.waterInfo});
+
+  final File image;
 
   final String waterType;
   final String waterInfo;
-  final ColorDetectionResult results;
+
+  @override
+  State<ResultsPage> createState() => _ResultsPagePageState();
+}
+
+class _ResultsPagePageState extends State<ResultsPage> {
+
+  List<TextEditingController> textFieldControllers = List.empty(growable: true);
 
   static const resultsPageTextStyle = TextStyle(
     color: Colors.black,
@@ -56,6 +66,9 @@ class ResultsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    for (var i = 0; i < 16; i++) {
+      textFieldControllers.add(TextEditingController(text: "0"));
+    }
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -103,7 +116,7 @@ class ResultsPage extends StatelessWidget {
               itemCount: 16,
               itemBuilder: (context, index) => ChemicalResultListing(
                 standard: epaStandards[index],
-                result: results.colors[index],
+                controller: textFieldControllers[index],
               ),
             ),
           ),
@@ -113,15 +126,15 @@ class ResultsPage extends StatelessWidget {
             child: Row(
               children: [
                 const Spacer(),
-                Consumer<AppState>(builder: (context, appState, child) {
-                  return resultsPageButton(
-                    text: 'add to database',
-                    onPressed: () async {
-                      Position loc = await getUserCurrentLocation();
-                      appState.addStrip(results, loc, waterType, DateTime.now());
-                    },
-                  );
-                }),
+                // Consumer<AppState>(builder: (context, appState, child) {
+                //   return resultsPageButton(
+                //     text: 'add to database',
+                //     onPressed: () async {
+                //       Position loc = await getUserCurrentLocation();
+                //       appState.addStrip(widget.image, textFieldControllers.map((controller) {return double.parse(controller.text);}).toList(), loc, widget.waterType, DateTime.now());
+                //     },
+                //   );
+                // }),
                 const Spacer(),
               ],
             ),
