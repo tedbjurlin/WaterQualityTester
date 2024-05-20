@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:water_quality_app/objects/chemical_standard.dart';
 
-class ChemicalResultListing extends StatelessWidget {
+class ChemicalResultListing extends StatefulWidget {
   const ChemicalResultListing({
     super.key,
     required this.standard,
@@ -12,7 +12,13 @@ class ChemicalResultListing extends StatelessWidget {
   final ChemicalStandard standard;
   final TextEditingController controller;
 
-  bool get isStandardMet => standard.isValueInRange(double.parse(controller.text));
+  @override
+  State<ChemicalResultListing> createState() => _ChemicalResultListingState();
+}
+
+class _ChemicalResultListingState extends State<ChemicalResultListing> {
+
+  bool get isStandardMet => widget.standard.isValueInRange(double.parse(widget.controller.text));
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +31,10 @@ class ChemicalResultListing extends StatelessWidget {
           tileColor: isStandardMet
               ? const Color.fromARGB(255, 182, 214, 204)
               : const Color.fromARGB(255, 255, 200, 200),
-          leading: Row(
+          leading: const Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
+              Icon(
                 Icons.square_rounded,
                 color: resultColor,
                 size: 50,
@@ -39,36 +45,42 @@ class ChemicalResultListing extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(width: 10),
-              TextField(
-                  controller: controller,decoration: const InputDecoration(labelText: "Enter your number"),
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-              ),
             ],
           ),
           title: Row(
             children: [
-              const Spacer(),
-              Text(standard.name),
+              Expanded(
+                child: TextField(
+                    controller: widget.controller,decoration: const InputDecoration(labelText: "Enter your number"),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    onSubmitted: (value) => setState(() {
+                      if (widget.controller.text == "") {
+                        widget.controller.text = "0";
+                      }
+                    }),
+                ),
+              ),
             ],
           ),
           subtitle: Row(
             children: [
               const Spacer(),
+              Text(widget.standard.name),
+              const SizedBox(width: 10),
               Text(
-                  'Ideal: ${standard.lo}-${standard.hi} ${standard.units ?? ''}'),
+                  'Ideal: ${widget.standard.lo}-${widget.standard.hi} ${widget.standard.units ?? ''}'),
             ],
           ),
-          onTap: () => standard.description == null
+          onTap: () => widget.standard.description == null
               ? null
               : showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text(standard.name),
-                    content: Text(standard.description ?? ''),
+                    title: Text(widget.standard.name),
+                    content: Text(widget.standard.description ?? ''),
                     actions: [
                       ElevatedButton(
                         onPressed: () => Navigator.pop(context),

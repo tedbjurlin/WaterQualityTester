@@ -126,15 +126,15 @@ class _ResultsPagePageState extends State<ResultsPage> {
             child: Row(
               children: [
                 const Spacer(),
-                // Consumer<AppState>(builder: (context, appState, child) {
-                //   return resultsPageButton(
-                //     text: 'add to database',
-                //     onPressed: () async {
-                //       Position loc = await getUserCurrentLocation();
-                //       appState.addStrip(widget.image, textFieldControllers.map((controller) {return double.parse(controller.text);}).toList(), loc, widget.waterType, DateTime.now());
-                //     },
-                //   );
-                // }),
+                Consumer<AppState>(builder: (context, appState, child) {
+                  return resultsPageButton(
+                    text: 'add to database',
+                    onPressed: () async {
+                      // Position loc = await getUserCurrentLocation();
+                      // appState.addStrip(widget.image, textFieldControllers.map((controller) {return double.parse(controller.text);}).toList(), loc, widget.waterType, DateTime.now());
+                    },
+                  );
+                }),
                 const Spacer(),
               ],
             ),
