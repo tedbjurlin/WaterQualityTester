@@ -56,12 +56,13 @@ class _ResultsPagePageState extends State<ResultsPage> {
   // created method for getting user current location
   Future<Position> getUserCurrentLocation() async {
     await Geolocator.requestPermission()
-        .then((value) {})
+        .then((value) {debugPrint(value.toString());})
         .onError((error, stackTrace) async {
       await Geolocator.requestPermission();
       debugPrint("ERROR $error");
     });
-    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true);
+    debugPrint("requested permissions");
+    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best, timeLimit: const Duration(seconds: 15), forceAndroidLocationManager: true);
   }
 
   @override
@@ -130,8 +131,19 @@ class _ResultsPagePageState extends State<ResultsPage> {
                   return resultsPageButton(
                     text: 'add to database',
                     onPressed: () async {
-                      // Position loc = await getUserCurrentLocation();
-                      // appState.addStrip(widget.image, textFieldControllers.map((controller) {return double.parse(controller.text);}).toList(), loc, widget.waterType, DateTime.now());
+                      debugPrint("Started to add");
+                      Position loc = await getUserCurrentLocation();
+                      //Position loc = Position(longitude: 10, latitude: 10, timestamp: DateTime.now(), accuracy: 0, altitude: 0, altitudeAccuracy: 0, heading: 0, headingAccuracy: 0, speed: 0, speedAccuracy: 0);
+                      debugPrint(loc.toString());
+                      await appState.addStrip(widget.image, textFieldControllers.map((controller) {return double.parse(controller.text);}).toList(), loc, widget.waterType, DateTime.now());
+                      debugPrint("added to database");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                SourceDescriptionPage(),
+                          ),
+                        );
                     },
                   );
                 }),

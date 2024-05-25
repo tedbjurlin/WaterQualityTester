@@ -35,7 +35,7 @@ Future<void> main() async {
         debugPrint(e.code);
     }
   }
-  runApp(Provider(
+  runApp(ChangeNotifierProvider(
     create: ((context) => AppState(FirebaseFirestore.instance, FirebaseAuth.instance, FirebaseStorage.instance)),
     child: MaterialApp(
       theme: ThemeData(primarySwatch: Colors.cyan),

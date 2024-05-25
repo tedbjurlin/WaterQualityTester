@@ -28,17 +28,19 @@ class AppState extends ChangeNotifier {
     record.doc().set(toFirebaseRecord(
       imageLink,
       colors,
-      geo.point(latitude: loc.latitude, longitude: loc.longitude).data,
+      loc.latitude,
+      loc.longitude,
       waterType,
       timestamp));
   }
 
   Map<String, dynamic> toFirebaseRecord(
-    String imageLink, List<double> colors, dynamic loc, String waterType, DateTime timestamp){
+    String imageLink, List<double> colors, double latitude, double longitude, String waterType, DateTime timestamp){
     return {
       "image": imageLink,
       "timestamp": timestamp.microsecondsSinceEpoch,
-      "location": loc,
+      "latitude": latitude,
+      "longitude": longitude,
       "Water Type": waterType,
       "pH": colors[0],
       "Hardness": colors[1],
